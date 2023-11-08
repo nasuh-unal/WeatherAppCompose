@@ -1,5 +1,4 @@
 package com.plcoding.weatherapp.domain.weather
-
 import java.time.LocalDateTime
 
 data class WeatherData(
@@ -9,5 +8,4 @@ data class WeatherData(
     val windSpeed:Double,
     val humidity:Double,
     val weatherType:WeatherType
-
 )

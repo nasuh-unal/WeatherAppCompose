@@ -3,8 +3,8 @@ package com.plcoding.weatherapp.domain.weather
 import com.google.android.gms.location.CurrentLocationRequest
 
 data class WeatherInfo(
-    val weatherDataPerDay: Map<Int, List<WeatherData>>,
-    val currentWeatherData: WeatherData?
+    val weatherDataPerDay: Map<Int, List<WeatherData>>,//Günlük Hava Durumu Verileri
+    val currentWeatherData: WeatherData?//anlık hava durumu verileri
 )
 
 //farklı günlerin hava durumlarına erişeceğiz

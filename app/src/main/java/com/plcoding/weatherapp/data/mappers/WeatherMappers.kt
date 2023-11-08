@@ -1,5 +1,4 @@
 package com.plcoding.weatherapp.data.mappers
-
 import com.plcoding.weatherapp.data.remote.WeatherDataDto
 import com.plcoding.weatherapp.data.remote.WeatherDto
 import com.plcoding.weatherapp.domain.weather.WeatherData
@@ -12,7 +11,7 @@ private data class IndexedWeatherData(
     val index: Int,
     val data: WeatherData
 )
-
+//Neden time üzerinden mapledik
 fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>> {
     return time.mapIndexed { index, time ->//saatlik olarak çektiğimiz verileri aktardık
         val temperature = temperature[index]
@@ -20,6 +19,7 @@ fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>> {
         val windSpeed = windSpeeds[index]
         val pressure = pressures[index]
         val humidity = humidities[index]
+
         IndexedWeatherData(
             index = index,
             data = WeatherData(
@@ -28,14 +28,14 @@ fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>> {
                 pressure = pressure,
                 windSpeed = windSpeed,
                 humidity = humidity,
-                weatherType = WeatherType.fromWMO(weatherCode)
+                weatherType = WeatherType.fromWMO(weatherCode)//biz oluşturduk bunu
             )
         )
-    }.groupBy {
-        it.index / 24
+    }.groupBy {IndexedWeatherData->
+        IndexedWeatherData.index / 24//günlere ayırdık
     }.mapValues {
         it.value.map { it.data }
-    }
+    }.also { it.keys }
 }
 
 fun WeatherDto.toWeatherInfo(): WeatherInfo {
