@@ -8,7 +8,7 @@ import com.plcoding.weatherapp.domain.weather.WeatherInfo
 import java.lang.Exception
 import javax.inject.Inject
 
-class WeatherRepositoryImp @Inject constructor(
+class WeatherRepositoryImpl @Inject constructor(
     private val api: WeatherApi
 ) : WeatherRepository {
     override suspend fun getWeatherData(lat: Double, long: Double): Resource<WeatherInfo> {
